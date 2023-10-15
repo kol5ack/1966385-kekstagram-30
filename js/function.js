@@ -5,4 +5,3 @@ function isLongestString(string, maxLength) {
 isLongestString('проверяемая строка', 20);
 isLongestString('проверяемая строка', 18);
 isLongestString('проверяемая строка', 10);
-
