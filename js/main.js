@@ -24,9 +24,9 @@ const DESCRIPTION = [
 ];
 
 function getRandomInteger(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  const IntMin = Math.ceil(min);
+  const IntMax = Math.floor(max);
+  return Math.floor(Math.random() * (IntMax - IntMin + 1)) + IntMin;
 }
 
 const generateIdComment = getRandomInteger(1, 25);
