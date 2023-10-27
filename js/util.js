@@ -1,9 +1,9 @@
 import { NAMES, MESSAGES, DESCRIPTIONS } from 'data.js';
 
 function getRandomInteger(min, max) {
-  const IntMin = Math.ceil(min);
-  const IntMax = Math.floor(max);
-  return Math.floor(Math.random() * (IntMax - IntMin + 1)) + IntMin;
+  const intMin = Math.ceil(min);
+  const intMax = Math.floor(max);
+  return Math.floor(Math.random() * (intMax - intMin + 1)) + intMin;
 }
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
