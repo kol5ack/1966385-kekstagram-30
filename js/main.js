@@ -1,5 +1,6 @@
-import 'data.js';
-import { generatedPosts } from 'util.js';
+import './data.js';
+import { generatedPosts } from './util.js';
+import { renderThumbnails } from './thumbnail.js';
 
-console.log(generatedPosts);
-
+const pictures = generatedPosts();
+renderThumbnails(pictures);
