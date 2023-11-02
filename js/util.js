@@ -20,7 +20,7 @@ const createCommentsArray = () => ({
 
 const createUserPhoto = () => ({
   userId: generateIdForUser,
-  urlPhoto: `photos/{${generatePhoto}}.jpg`,
+  urlPhoto: (`photos/${generatePhoto}.jpg`),
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
   comments: Array.from({ length: getRandomInteger(0, 30) }, createCommentsArray),
