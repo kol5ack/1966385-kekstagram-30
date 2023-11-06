@@ -1,4 +1,4 @@
-import { NAMES, MESSAGES, DESCRIPTIONS } from 'data.js';
+import { NAMES, MESSAGES, DESCRIPTIONS } from './data.js';
 
 function getRandomInteger(min, max) {
   const intMin = Math.ceil(min);
@@ -11,23 +11,21 @@ const generateIdComment = getRandomInteger(1, 25);
 const generateIdForUser = getRandomInteger(1, 25);
 const generatePhoto = getRandomInteger(1, 25);
 
-export { getRandomArrayElement, getRandomInteger, generateIdComment, generateIdForUser, generatePhoto };
-
 const createCommentsArray = () => ({
   commentsId: generateIdComment,
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+  avatar: Math.random(`img/avatar-${getRandomInteger(1, 6)}.svg`),
   message: MESSAGES[Math.round(Math.random() * (MESSAGES.length - 1))],
   name: getRandomArrayElement(NAMES),
 });
 
 const createUserPhoto = () => ({
   userId: generateIdForUser,
-  urlPhoto: `photos/${generatePhoto}.jpg`,
+  urlPhoto: (`photos/${generatePhoto}.jpg`),
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
   comments: Array.from({ length: getRandomInteger(0, 30) }, createCommentsArray),
 });
 
-const generatedPosts = Array.from({ length: 30 }, createUserPhoto);
+const generatedPosts = () => Array.from({ length: 25 }, createUserPhoto);
 
 export { generatedPosts };
