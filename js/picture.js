@@ -15,7 +15,7 @@ const onCLosePictureButtonClick = () => {
 };
 
 function onDocumentKeydown(evt) {
-  if (isEscapeKey) {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     hidePicture();
   }
@@ -28,13 +28,15 @@ const renderPicture = ({ urlPhoto, description, likes }) => {
   bigPictureElement.querySelector('.social__caption').textContent = description;
 };
 
-const hideSocialComment = document.querySelector('.social__comment-count');
+const hideSocialComment = document.querySelector('.social__comment-count ');
+const hideLoaderComment = document.querySelector('.comments-loader');
 
 const showPicture = (pictureData) => {
   bigPictureElement.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
   hideSocialComment.classList.add('hidden');
+  hideLoaderComment.classList.add('hidden');
 
   renderPicture(pictureData);
 };
