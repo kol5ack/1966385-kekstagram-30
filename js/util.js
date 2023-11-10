@@ -33,7 +33,6 @@ function createRandomNumber(min, max) {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 const generateIdComment = getRandomInteger(1, 25);
-const generateRandomAvatar = getRandomInteger(1, 6);
 
 function getImage() {
   const getRandomImage = Math.floor(Math.getRandomInteger(1, 25) * 2);
@@ -42,7 +41,7 @@ function getImage() {
 
 const createCommentsArray = () => ({
   commentsId: generateIdComment,
-  avatar: `img/avatar-${generateRandomAvatar}.svg`,
+  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
   message: MESSAGES[Math.round(Math.random() * (MESSAGES.length - 1))],
   name: getRandomArrayElement(NAMES),
 });
