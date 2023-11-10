@@ -1,6 +1,8 @@
 import './data.js';
 import { generatedPosts } from './util.js';
-import { renderThumbnails } from './thumbnail.js';
+import { renderGallery } from './gallery.js';
 
-const pictures = generatedPosts();
-renderThumbnails(pictures);
+
+renderGallery(generatedPosts());
+
+
