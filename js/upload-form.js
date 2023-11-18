@@ -1,3 +1,4 @@
+import { init as initEffect } from './effect.js';
 import { resetScale } from './scale.js';
 
 const MAX_HASHTAG_COUNT = 5;
@@ -21,8 +22,8 @@ const commendField = form.querySelector('.text__description');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper__error'
+  errorTextParent: 'text__description',
+  errorTextClass: 'img-upload__field-wrapper__error',
 });
 
 const showModal = () => {
@@ -58,8 +59,7 @@ const hasUniqueTags = (value) => {
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
 
-const isFormValid = (evt) => pristine.validate() ? pristine.reset() : evt.preventDefault();
-
+const isFormValid = (evt) => (pristine.validate() ? pristine.reset() : evt.preventDefault());
 function onDocumentKeydown(evt) {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
     evt.preventDefault();
@@ -107,8 +107,11 @@ pristine.addValidator(
   true
 );
 
-fileField.addEventListener('change', onFileInputChange);
-cancelButton.addEventListener('click', onCancelButtonClick);
-form.addEventListener('submit', onFormSubmit);
+const initUploadForm = () => {
+  fileField.addEventListener('change', onFileInputChange);
+  cancelButton.addEventListener('click', onCancelButtonClick);
+  form.addEventListener('submit', onFormSubmit);
+  initEffect();
+};
 
-isFormValid();
+export { initUploadForm };
