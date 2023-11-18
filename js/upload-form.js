@@ -1,3 +1,4 @@
+import { init as initEffect } from './effect.js';
 import { resetScale } from './scale.js';
 
 const MAX_HASHTAG_COUNT = 5;
@@ -21,8 +22,8 @@ const commendField = form.querySelector('.text__description');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper__error'
+  errorTextParent: 'text__description',
+  errorTextClass: 'img-upload__field-wrapper__error',
 });
 
 const showModal = () => {
@@ -110,6 +111,7 @@ const initUploadForm = () => {
   fileField.addEventListener('change', onFileInputChange);
   cancelButton.addEventListener('click', onCancelButtonClick);
   form.addEventListener('submit', onFormSubmit);
+  initEffect();
 };
 
 export { initUploadForm };
