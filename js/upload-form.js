@@ -58,8 +58,7 @@ const hasUniqueTags = (value) => {
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
 
-const isFormValid = (evt) => pristine.validate() ? pristine.reset() : evt.preventDefault();
-
+const isFormValid = (evt) => (pristine.validate() ? pristine.reset() : evt.preventDefault());
 function onDocumentKeydown(evt) {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
     evt.preventDefault();
@@ -107,8 +106,12 @@ pristine.addValidator(
   true
 );
 
-fileField.addEventListener('change', onFileInputChange);
-cancelButton.addEventListener('click', onCancelButtonClick);
-form.addEventListener('submit', onFormSubmit);
+const initUploadForm = () => {
+  fileField.addEventListener('change', onFileInputChange);
+  cancelButton.addEventListener('click', onCancelButtonClick);
+  form.addEventListener('submit', onFormSubmit);
+};
 
-isFormValid();
+export { initUploadForm };
+
+
