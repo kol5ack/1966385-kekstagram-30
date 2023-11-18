@@ -115,5 +115,3 @@ const initUploadForm = () => {
 };
 
 export { initUploadForm };
-
-
