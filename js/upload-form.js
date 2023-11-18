@@ -1,16 +1,21 @@
+import { resetScale } from './scale.js';
+
 const MAX_HASHTAG_COUNT = 5;
+const MAX_COMMENT_LENGTH = 140;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
 const ErrorText = {
   INVALID_DUPLICATE: 'Хэш-тег не может быть использован дважды',
   INVALID_COUNT: 'Максимум &{MAX_HASHTAG_COUNT} хэш-тегов',
   INVALID_HESHTAG: 'Неправильный хэш-тег',
+  MAX_LENGTH: `Длина комментария превышает ${MAX_COMMENT_LENGTH} символов`,
 };
 
 const body = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
 const overlay = form.querySelector('.img-upload__overlay');
 const cancelButton = form.querySelector('.img-upload__cancel');
-const fieldField = form.querySelector('.img-upload__input');
+const fileField = form.querySelector('.img-upload__input');
 const hashtahField = form.querySelector('.text__hashtags');
 const commendField = form.querySelector('.text__description');
 
@@ -18,16 +23,16 @@ const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper__error'
-}, false);
+});
 
 const showModal = () => {
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
 };
 
 const hideModal = () => {
   form.reset();
+  resetScale();
   pristine.reset();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -38,7 +43,7 @@ const isTextFieldFocused = () =>
   document.activeElement === hashtahField ||
   document.activeElement === commendField;
 
-const normalizeTags = (taqgString) => taqgString
+const normalizeTags = (tagString) => tagString
   .trim()
   .split(' ')
   .filter((tag) => Boolean(tag.length));
@@ -74,11 +79,15 @@ const onFormSubmit = (evt) => {
   isFormValid(evt);
 };
 
+const firstVerification = 1;
+const secondVerification = 2;
+const thirdVerification = 3;
+
 pristine.addValidator(
   hashtahField,
   hasValidCount,
   ErrorText.INVALID_COUNT,
-  3,
+  thirdVerification,
   true
 );
 
@@ -86,7 +95,7 @@ pristine.addValidator(
   hashtahField,
   hasUniqueTags,
   ErrorText.INVALID_DUPLICATE,
-  2,
+  secondVerification,
   true
 );
 
@@ -94,12 +103,12 @@ pristine.addValidator(
   hashtahField,
   hasValidTags,
   ErrorText.INVALID_HESHTAG,
-  1,
+  firstVerification,
   true
 );
 
-fieldField.addEventListener('change', onFileInputChange);
+fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
 
-export { pristine, isFormValid };
+isFormValid();
