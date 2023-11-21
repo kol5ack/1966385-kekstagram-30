@@ -1,7 +1,15 @@
-import { NAMES, MESSAGES, DESCRIPTIONS } from './data.js';
-import { generatedPosts } from './util.js';
 import { renderGallery } from './gallery.js';
 import { initUploadForm } from './upload-form.js';
+import { getData } from './api.js';
+import { showErrorMessage } from './util.js';
+import { onFormSubmit } from './upload-form.js';
 
-renderGallery(generatedPosts(NAMES, MESSAGES, DESCRIPTIONS));
-initUploadForm();
+
+const bootstrap = async () => {
+  const pictures = await getData();
+  renderGallery(pictures);
+  onFormSubmit();
+  initUploadForm();
+};
+
+bootstrap(showErrorMessage());

@@ -25,23 +25,6 @@ const effectToFilter = {
     unit: 'px',
   },
   [Effects.HEAT]: {
-  [Effect.CHROME]: {
-    style: 'grayscale',
-    unit: '',
-  },
-  [Effect.SEPIA]: {
-    style: 'sepia',
-    unit: '',
-  },
-  [Effect.MARVIN]: {
-    style: 'invert',
-    unit: '%',
-  },
-  [Effect.PHOBOS]: {
-    style: 'blur',
-    unit: 'px',
-  },
-  [Effect.SEPIA]: {
     style: 'brightness',
     unit: '',
   },
@@ -155,7 +138,6 @@ const setEffect = (effect) => {
 
 const reset = () => {
   setEffect(Effects.DEFAULT);
-
 };
 
 const onEffectsChange = (evt) => {
