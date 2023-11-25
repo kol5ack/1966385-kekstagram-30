@@ -1,28 +1,22 @@
+const postsContainerElement = document.querySelector('.pictures');
+const miniaturePictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
-
-const createThumbnail = ({ urlPhoto, description, comments, likes, userId }) => {
-  const thumbnail = thumbnailTemplate.cloneNode(true);
-
-  thumbnail.querySelector('.picture__img').src = urlPhoto;
-  thumbnail.querySelector('.picture__img').alt = description;
-  thumbnail.querySelector('.picture__comments').textContent = comments.length;
-  thumbnail.querySelector('.picture__likes').textContent = likes;
-  thumbnail.dataset.thumbnailId = userId;
-
-  return thumbnail;
-};
-
-const renderThumbnails = (pictures, container) => {
+const createThumbnail = (posts) => {
   const fragment = document.createDocumentFragment();
-  pictures.forEach((picture) => {
-    const thumbnail = createThumbnail(picture);
 
-    fragment.append(thumbnail);
+  posts.forEach(({ url, description, likes, comments, id }) => {
+    const newMiniature = miniaturePictureTemplate.cloneNode(true);
+
+    newMiniature.querySelector('.picture__img').src = url;
+    newMiniature.querySelector('.picture__img').alt = description;
+    newMiniature.querySelector('.picture__likes').textContent = likes;
+    newMiniature.querySelector('.picture__comments').textContent = comments.length;
+    newMiniature.setAttribute('data-index', id);
+
+    fragment.append(newMiniature);
   });
 
-  container.append(fragment);
+  postsContainerElement.append(fragment);
 };
 
-export { renderThumbnails };
-
+export { createThumbnail };

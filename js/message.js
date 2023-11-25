@@ -3,8 +3,8 @@ const errorMessageElement = document.querySelector('#error').content.querySelect
 
 
 function hideMessage() {
-  const existsElement = document.querySelector('.succes') || document.querySelector('.error');
-  existsElement.remove();
+  const errorElemen = document.querySelector('.succes') || document.querySelector('.error');
+  errorElemen.remove();
   document.removeEventListener('keydown', onDocumentKeydown);
   document.body.removeEventListener('click', onBodyClick);
 }

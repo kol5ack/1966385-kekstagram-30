@@ -49,7 +49,9 @@ const renderComments = () => {
   totalCommentCountElement.textContent = comments.length;
 };
 
-const onCommentsLoaderClick = () => renderComments();
+const onCommentsLoaderClick = () => {
+  renderComments();
+};
 
 const hidePicture = () => {
   commentsCountShown = 0;
